@@ -56,9 +56,8 @@ dependencies {
     agent "org.aspectj:aspectjweaver:1.8.10"
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "com.github.docker-java:docker-java:3.0.7"
-    compile "ru.yandex.qatools.allure:allure-junit-adaptor:1.4.23"
-    compile "ru.yandex.qatools.ashot:ashot:1.5.2"
+    compile "ru.yandex.qatools.allure:allure-junit-adaptor:1.5.2"
+    compile "ru.yandex.qatools.ashot:ashot:1.5.3"
     compile "ru.yandex.qatools.htmlelements:htmlelements-java:1.17"
 
     testCompile "junit:junit:4.12"
