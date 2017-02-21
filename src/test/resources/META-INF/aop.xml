@@ -1,0 +1,5 @@
+<aspectj>
+    <weaver>
+        <include within="com.seleniumcamp..*"/>
+    </weaver>
+</aspectj>
