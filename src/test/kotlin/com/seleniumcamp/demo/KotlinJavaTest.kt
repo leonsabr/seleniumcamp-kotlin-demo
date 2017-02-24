@@ -28,12 +28,12 @@ class KotlinJavaTest {
             .around(JLoggingRule(browser))
 
     @Test fun `Verify build run`() {
-        browser.navigateTo(JTeamCityLoginPage(browser.driver))
+        browser.navigateTo(JTeamCityLoginPage::class.java)
                 .login(ADMIN, ADMIN)
                 .waitForBuildAgent()
-        val expectedBuildNumber = browser.navigateTo(JTeamCityBuildConfigurationPage(browser.driver), BUILD_CONFIGURATION_ID)
-                .getLatestBuildNumber() + 1
-        browser.navigateTo(JTeamCityBuildConfigurationPage(browser.driver), BUILD_CONFIGURATION_ID)
+        val expectedBuildNumber = browser.navigateTo(JTeamCityBuildConfigurationPage::class.java, BUILD_CONFIGURATION_ID)
+                .latestBuildNumber + 1
+        browser.navigateTo(JTeamCityBuildConfigurationPage::class.java, BUILD_CONFIGURATION_ID)
                 .runNewBuild()
                 .waitForRunningBuildToFinish()
                 .verifyLatestBuild(expectedBuildNumber, BUILD_STATUS,

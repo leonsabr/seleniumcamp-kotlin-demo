@@ -31,13 +31,12 @@ public class JavaJavaTest {
     @Title("Verify build run")
     @Test
     public void verifyBuildRun() {
-        browser.navigateTo(new JTeamCityLoginPage(browser.getDriver()))
+        browser.navigateTo(JTeamCityLoginPage.class)
                 .login(ADMIN, ADMIN)
                 .waitForBuildAgent();
-        final JTeamCityBuildConfigurationPage buildConfigurationPage = new JTeamCityBuildConfigurationPage(browser.getDriver());
-        final int expectedBuildNumber = browser.navigateTo(buildConfigurationPage, BUILD_CONFIGURATION_ID)
+        final int expectedBuildNumber = browser.navigateTo(JTeamCityBuildConfigurationPage.class, BUILD_CONFIGURATION_ID)
                 .getLatestBuildNumber() + 1;
-        browser.navigateTo(buildConfigurationPage, BUILD_CONFIGURATION_ID)
+        browser.navigateTo(JTeamCityBuildConfigurationPage.class, BUILD_CONFIGURATION_ID)
                 .runNewBuild()
                 .waitForRunningBuildToFinish()
                 .verifyLatestBuild(expectedBuildNumber, BUILD_STATUS,

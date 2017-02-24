@@ -31,13 +31,12 @@ public class JavaKotlinTest {
     @Title("Verify build run")
     @Test
     public void verifyBuildRun() {
-        browser.navigateTo(new KTeamCityLoginPage(browser.getDriver()))
+        browser.navigateTo(KTeamCityLoginPage::new)
                 .login(ADMIN, ADMIN)
                 .waitForBuildAgent();
-        final KTeamCityBuildConfigurationPage buildConfigurationPage = new KTeamCityBuildConfigurationPage(browser.getDriver());
-        final int expectedBuildNumber = browser.navigateTo(buildConfigurationPage, BUILD_CONFIGURATION_ID)
+        final int expectedBuildNumber = browser.navigateTo(KTeamCityBuildConfigurationPage::new, BUILD_CONFIGURATION_ID)
                 .getLatestBuildNumber() + 1;
-        browser.navigateTo(buildConfigurationPage, BUILD_CONFIGURATION_ID)
+        browser.navigateTo(KTeamCityBuildConfigurationPage::new, BUILD_CONFIGURATION_ID)
                 .runNewBuild()
                 .waitForRunningBuildToFinish()
                 .verifyLatestBuild(expectedBuildNumber, BUILD_STATUS,

@@ -20,7 +20,17 @@ public class JBrowser {
         return driver;
     }
 
-    public <T extends JPage> T navigateTo(final T page, final String... params) {
+    public <T extends JPage> T navigateTo(final Class<T> clazz, final String... params) {
+        T page = null;
+        try {
+            page = clazz.getConstructor(WebDriver.class).newInstance(driver);
+        } catch (Exception ignored) {
+            //not gonna happen
+        }
+        return navigateTo(page, params);
+    }
+
+    private  <T extends JPage> T navigateTo(final T page, final String... params) {
         return loadPage(page, JConfig.INSTANCE.getTeamcityBaseURL() + String.format(page.getUrl(), (Object[]) params));
     }
 
